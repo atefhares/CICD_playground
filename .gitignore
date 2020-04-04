@@ -27,3 +27,7 @@ override.tf.json
 
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
+
+
+terraform-provider-aws_2.56.0_linux_amd64.zip
+terraform-provider-aws_v2.56.0_x4
