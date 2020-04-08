@@ -33,3 +33,5 @@ terraform-provider-aws_2.56.0_linux_amd64.zip
 terraform-provider-aws_v2.56.0_x4
 /lab2/private_key.pem
 /lab2/credentials
+ansible/nginx_inventory.yml
+/lab2/ssh_config

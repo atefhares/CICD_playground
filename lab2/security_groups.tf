@@ -54,6 +54,16 @@ resource "aws_security_group_rule" "ingress_bastion_sg_ssh_sgr" {
   security_group_id = aws_security_group.ec2_bastion_sg.id
 }
 
+resource "aws_security_group_rule" "egress_bastion_sg_ssh_sgr" {
+  from_port = 22
+  to_port = 22
+  protocol = "tcp"
+  type = "egress"
+  cidr_blocks = [aws_vpc.mainvpc.cidr_block]
+  security_group_id = aws_security_group.ec2_bastion_sg.id
+}
+
+
 //--------------------------------------------------------------------------------------------------------
 
 resource "aws_security_group" "ec2_private_subnet_sg" {
