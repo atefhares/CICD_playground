@@ -1,0 +1,16 @@
+pipeline {
+   agent any
+
+   stages {
+      stage(''){
+
+      }
+      stage('build infrastructure using terraform') {
+         steps {
+            sh 'cd /work_dir'a
+            sh 'terraform init'
+            sh 'terraform apply -var-file devel.tfvars -auto-approve'
+         }
+      }
+   }
+}
