@@ -20,7 +20,7 @@ The goal is to apply an infrastructure close enough to the following structure:
 - `docker-compose up --build -d`
 - open your browser and go to  `localhost:8081`
 - complete jenkins setup steps
-- after logging into jenkins, create a pipeline to run the jenkins file form SCM [jenkins_file](jenkins_file)
+- after logging into jenkins, create a pipeline to run the jenkins file form SCM [jenkins_file](https://github.com/atefhares/terraform_playground/blob/master/lab2/jenkins_file)
 - run the pipeline
 
 ## Screen shots
