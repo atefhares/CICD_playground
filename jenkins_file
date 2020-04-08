@@ -1,8 +1,8 @@
 node {
   stage('build infrastructure using terraform') {
-        sh 'mkdir -p ~/.ssh && chmod 700 ~/.aws'
-
+        sh 'mkdir -p ~/.aws && chmod 700 ~/.aws'
         sh 'cp /work_dir/credentials ~/.aws/credentials'
+
         sh 'cd /work_dir; terraform init'
         sh 'cd /work_dir; terraform apply -var-file devel.tfvars -auto-approve'
 
