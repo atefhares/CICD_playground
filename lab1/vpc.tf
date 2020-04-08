@@ -4,3 +4,8 @@ resource "aws_vpc" "mainvpc" {
     Name = "mainvpc"
   }
 }
+
+
+output "vpc" {
+  value = aws_vpc.mainvpc.id
+}
