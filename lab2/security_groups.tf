@@ -83,3 +83,12 @@ resource "aws_security_group_rule" "ingress_private_subnet_ssh_sgr" {
   cidr_blocks = [aws_vpc.mainvpc.cidr_block]
   security_group_id = aws_security_group.ec2_private_subnet_sg.id
 }
+
+resource "aws_security_group_rule" "egress_private_subnet_all_tcp_sgr" {
+  from_port = 0
+  to_port = 65535
+  protocol = "tcp"
+  type = "egress"
+  cidr_blocks = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.ec2_private_subnet_sg.id
+}
