@@ -1,6 +1,7 @@
-# Infrastructure as code using Terraform, Jenkinks, Docker, Ansible, AWS
+## Infrastructure as code using Terraform, Jenkinks, Docker, Ansible, AWS
 
 The goal is to apply an infrastructure close enough to the following structure:
+
 <img src="images/infra.jpeg" width="500"/>
 
 ## Resources created
@@ -25,3 +26,4 @@ The goal is to apply an infrastructure close enough to the following structure:
 
 ##
 **this demo is created by students @ [ITI](http://iti.gov.eg/) - intake 40**
+z
