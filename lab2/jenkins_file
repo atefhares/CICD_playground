@@ -2,7 +2,7 @@ node {
   stage('build infrastructure using terraform') {
          sh 'ls -la /work_dir'
          sh 'cp /work_dir/credentials ~/.aws/credentials'
-         sh 'cd /work_dir; terraform init /work_dir'
+         sh 'cd /work_dir; terraform init'
          sh 'cd /work_dir; terraform plan -var-file devel.tfvars'
    }
 }
