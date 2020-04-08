@@ -1,5 +1,6 @@
 node {
   stage('build infrastructure using terraform') {
+         sh 'ls -la /work_dir'
         dir('/work_dir'){
            sh 'ls -la'
            sh 'cp credentials ~/.aws/credentials'
