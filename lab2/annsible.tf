@@ -1,8 +1,7 @@
 data "template_file" "nginx_ec2" {
   template = file("${path.module}/templates/nginx_ec2.cfg")
   vars = {
-    nginx1_ec2_public_ip = aws_instance.nginx1.public_ip
-    bastion_public_ip = aws_instance.bastion.public_ip
+    nginx1_ec2_private_ip = aws_instance.nginx1.private_ip
   }
 }
 

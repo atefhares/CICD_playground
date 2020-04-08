@@ -14,7 +14,14 @@ The goal is to apply an infrastructure close enough to the following structure:
 - 2 security groups + 1 default
 
 ## Steps
-
+- install docker && docker-compose
+- create the file `credentials` and add your aws credentials into it
+- cd `docker`
+- `docker-compose up --build -d`
+- open your browser and go to  `localhost:8081`
+- complete jenkins setup steps
+- after logging into jenkins, create a pipeline to run the jenkins file form SCM [jenkins_file](jenkins_file)
+- run the pipeline
 
 ## Screen shots
 <img src="images/1.png" width="500"/>
