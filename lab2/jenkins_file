@@ -1,6 +1,6 @@
 node {
   stage('build infrastructure using terraform') {
-        sh 'cd /work_dir'a
+        sh 'cd /work_dir'
         sh 'terraform init'
         sh 'terraform apply -var-file devel.tfvars -auto-approve'
    }
