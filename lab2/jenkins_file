@@ -1,17 +1,17 @@
 node {
   stage('build infrastructure using terraform') {
+        sh 'cp /work_dir/credentials ~/.aws/credentials'
+        sh 'cd /work_dir; terraform init'
+        sh 'cd /work_dir; terraform apply -var-file devel.tfvars -auto-approve'
 
-         sh 'cd /work_dir; terraform init'
-         sh 'cd /work_dir; terraform apply -var-file devel.tfvars -auto-approve'
+        sh 'mkdir -p ~/.ssh && chmod 700 ~/.ssh'
 
-         sh 'mkdir -p ~/.ssh && chmod 700 ~/.ssh'
+        sh 'cp /work_dir/ssh_config ~/.ssh/config'
+        sh 'chmod 600 ~/.ssh/config'
 
-          sh 'cp /work_dir/ssh_config ~/.ssh/config'
-          sh 'chmod 600 ~/.ssh/config'
+        sh 'cp /work_dir/private_key.pem ~/.ssh/ec2_private_key.pem'
+        sh 'chmod 600 ~/.ssh/ec2_private_key.pem'
 
-          sh 'cp /work_dir/private_key.pem ~/.ssh/ec2_private_key.pem'
-          sh 'chmod 600 ~/.ssh/ec2_private_key.pem'
-
-         sh 'cd /work_dir; sleep 30; export ANSIBLE_HOST_KEY_CHECKING=False; ansible-playbook -i ./ansible/nginx_inventory.yml ./ansible/playbook.yml --key-file=./private_key.pem'
+        sh 'cd /work_dir; sleep 30; export ANSIBLE_HOST_KEY_CHECKING=False; ansible-playbook -i ./ansible/nginx_inventory.yml ./ansible/playbook.yml --key-file=./private_key.pem'
    }
 }
