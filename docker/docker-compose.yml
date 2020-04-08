@@ -3,7 +3,7 @@ services:
   "jenkins_container":
     build:
       context: ""
-      dockerfile: Dockerfile.dockerfile
+      dockerfile: ./Dockerfile.dockerfile
     ports:
       - 8081:8080
     volumes:

@@ -9,5 +9,5 @@ RUN mv terraform /usr/bin
 RUN rm terraform_0.12.24_linux_amd64.zip
 RUN terraform -v
 RUN pip3 install ansible
-RUN ansible -v
+RUN ansible --version
 USER jenkins
