@@ -1,0 +1,36 @@
+---
+- name: Install GoCD
+  remote_user: ec2-user
+  hosts: EC2
+  become: true
+
+  tasks:
+    - name: Install GOCD repo
+      get_url:
+        url: https://download.gocd.org/gocd.repo
+        dest: /etc/yum.repos.d/gocd.repo
+
+    - name: Upgrade all packages
+      yum:
+        name=*
+        state=latest
+
+    - name: Install GOCD server
+      yum:
+        name: go-server
+        state: present
+
+    - name: Start GOCD server
+      service:
+        name: go-server
+        state: started
+
+    - name: Install GOCD agent
+      yum:
+        name: go-agent
+        state: present
+
+    - name: Start GOCD agent
+      service:
+        name: go-agent
+        state: started

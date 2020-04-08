@@ -7,7 +7,7 @@ The goal is to apply an infrastructure close enough to the following structure:
 ## Resources created
 - 2 public machines running nginx
 - 1 bastion machine
-- 2 private machines running GOCD, sonatype NEUXES 
+- 2 private machines running GOCD, sonatype NEXUS 
 - 1 main VPC
 - 2 private subnets and 2 public inside the main VPC
 - 2 routing tables + 1 default

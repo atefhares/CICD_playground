@@ -1,0 +1,110 @@
+---
+- name: Install NEXUS
+  remote_user: ec2-user
+  hosts: EC2
+  become: true
+
+  tasks:
+    - name: Upgrade all packages
+      yum:
+        name=*
+        state=latest
+
+    - name: Install openjdk 1.8
+      yum:
+        name: java-1.8.0-openjdk-devel
+        state: present
+
+    - name: Remove /app directory
+      file:
+        path: /app
+        state: absent
+
+    - name: Creates /app directory
+      file:
+        path: /app
+        state: directory
+
+    - name: Downlaod nexues into /app dir
+      get_url:
+        url: https://download.sonatype.com/nexus/3/latest-unix.tar.gz
+        dest: /app/nexus.tar.gz
+
+    - name: Extract /app/nexus.tar.gz into /app/nexus
+      unarchive:
+        src: /app/nexus.tar.gz
+        dest: /app
+        remote_src: yes
+
+    - name: rename extracted file
+      command: mv "/app/nexus-3.22.0-02" /app/nexus
+
+    - name: add user nexus
+      user:
+        name: nexuss
+
+    - name: Change nexus file owner
+      file:
+        path: /app/nexus
+        owner: nexus
+        group: nexus
+
+    - name: Change nexus file owner
+      file:
+        path: /app/sonatype-work
+        owner: nexus
+        group: nexus
+
+    - name: uncomment run_as_user parameter
+      replace:
+        path: /app/nexus/bin/nexus.rc
+        regexp: '#run_as_user=""'
+        replace: 'run_as_user="nexus"'
+
+
+    - name: Creates /etc/systemd/system/nexus.service file
+      file:
+        path: /etc/systemd/system/nexus.service
+        state: file
+
+    - name: insert into /etc/systemd/system/nexus.service
+      blockinfile:
+        path: /etc/systemd/system/nexus.service
+        remote_src: yes
+        block: |
+          [Unit]
+          Description=nexus service
+          After=network.target
+
+          [Service]
+          Type=forking
+          LimitNOFILE=65536
+          User=nexus
+          Group=nexus
+          ExecStart=/app/nexus/bin/nexus start
+          ExecStop=/app/nexus/bin/nexus stop
+          User=nexus
+          Restart=on-abort
+
+          [Install]
+          WantedBy=multi-user.target
+
+
+    - name: chkconfig nexus on
+      command: chkconfig nexus on
+
+    - name: ln -s /app/nexus /etc/init.d/nexus
+      command: ln -s /app/nexus /etc/init.d/nexus
+
+    - name: chkconfig --add nexus
+      command: chkconfig --add nexus
+
+    - name: chkconfig --levels 345 nexus on
+      command: chkconfig --levels 345 nexus on
+
+    # must configure SeLinux before this step!
+
+    - name: Start nexus
+      service:
+        name: nexus
+        state: started
