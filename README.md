@@ -1,4 +1,4 @@
-## Infrastructure as code using Terraform, Jenkinks, Docker, Ansible, AWS
+## Infrastructure as code using Terraform, Jenkins, Docker, Ansible, AWS
 
 The goal is to apply an infrastructure close enough to the following structure:
 
