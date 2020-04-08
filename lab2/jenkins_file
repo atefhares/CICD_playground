@@ -1,11 +1,8 @@
 node {
   stage('build infrastructure using terraform') {
          sh 'ls -la /work_dir'
-        dir('/work_dir'){
-           sh 'ls -la'
-           sh 'cp credentials ~/.aws/credentials'
-           sh 'terraform init'
-           sh 'terraform apply -var-file devel.tfvars -auto-approve'
-         }
+         sh 'cp /work_dir/credentials ~/.aws/credentials'
+         sh 'terraform init /work_dir'
+         sh 'terraform apply -var-file /work_dir/devel.tfvars /work_dir -auto-approve'
    }
 }
