@@ -3,6 +3,7 @@ node {
          sh 'ls -la /work_dir'
          sh 'cp /work_dir/credentials ~/.aws/credentials'
          sh 'cd /work_dir; terraform init'
-         sh 'cd /work_dir; terraform plan -var-file devel.tfvars'
+         sh 'cd /work_dir; terraform apply -var-file devel.tfvars -auto-approve'
+         sh 'cd /work_dir; sleep 30; export ANSIBLE_HOST_KEY_CHECKING=False; ansible-playbook -i ./ansible/nginx_inventory.yml ./ansible/playbook.yml --key-file=./private_key.pem'
    }
 }
