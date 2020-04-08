@@ -14,7 +14,7 @@ resource "null_resource" "dev-hosts" {
     command = "echo '${data.template_file.nginx_ec2.rendered}' > ./ansible/nginx_inventory.yml"
   }
 
-  provisioner "local-exec" {
-    command = "sleep 30; export ANSIBLE_HOST_KEY_CHECKING=False; ansible-playbook -i ./ansible/nginx_inventory.yml ./ansible/playbook.yml --key-file=./private_key.pem"
-  }
+//  provisioner "local-exec" {
+//    command = "sleep 30; export ANSIBLE_HOST_KEY_CHECKING=False; ansible-playbook -i ./ansible/nginx_inventory.yml ./ansible/playbook.yml --key-file=./private_key.pem"
+//  }
 }
