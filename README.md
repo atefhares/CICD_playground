@@ -32,6 +32,8 @@ The goal is to apply an infrastructure close enough to the following structure:
 <img src="images/4.png" width="500"/>
 <img src="images/5.png" width="500"/>
 <img src="images/6.png" width="500"/>
+<img src="images/8.png" width="500"/>
+<img src="images/9.png" width="500"/>
 
 ##
 **this demo is created by students @ [ITI](http://iti.gov.eg/) - intake 40**
