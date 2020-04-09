@@ -14,10 +14,10 @@ node {
         sh 'cp /work_dir/private_key.pem ~/.ssh/ec2_private_key.pem'
         sh 'chmod 600 ~/.ssh/ec2_private_key.pem'
 
-        sh 'cd /work_dir; sleep 30; export ANSIBLE_HOST_KEY_CHECKING=False; ansible-playbook -i ./ansible/nginx_inventory.yml ./ansible/nginx_playbook.yml --key-file=./private_key.pem'
+        sh 'cd /work_dir; sleep 120; export ANSIBLE_HOST_KEY_CHECKING=False; ansible-playbook -i ./ansible/nginx_inventory.yml ./ansible/nginx_playbook.yml --key-file=./private_key.pem'
 
-        sh 'cd /work_dir; sleep 30; export ANSIBLE_HOST_KEY_CHECKING=False; ansible-playbook -i ./ansible/gocd_inventory.yml ./ansible/gocd_playbook.yml --key-file=./private_key.pem'
+        sh 'cd /work_dir; sleep 120; export ANSIBLE_HOST_KEY_CHECKING=False; ansible-playbook -i ./ansible/gocd_inventory.yml ./ansible/gocd_playbook.yml --key-file=./private_key.pem'
 
-        sh 'cd /work_dir; sleep 30; export ANSIBLE_HOST_KEY_CHECKING=False; ansible-playbook -i ./ansible/nexus_inventory.yml ./ansible/nexus_playbook.yml --key-file=./private_key.pem'
+        sh 'cd /work_dir; sleep 120; export ANSIBLE_HOST_KEY_CHECKING=False; ansible-playbook -i ./ansible/nexus_inventory.yml ./ansible/nexus_playbook.yml --key-file=./private_key.pem'
    }
 }
