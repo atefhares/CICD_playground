@@ -1,6 +1,6 @@
 # CI/CD playground
 
-This repo contains multiple challenges to build a CI/CD pipeline. 
+This repo contains multiple challenges to build CI/CD pipelines. 
 
 ## Challenges:
 
