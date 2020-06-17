@@ -7,10 +7,10 @@ pipeline {
             }
         }
 
-        // stage('Build & Deploy') {
-        //     steps {
-        //         sh "docker-compose up "
-        //     }
-        // }
+        stage('Build & Deploy') {
+            steps {
+                sh "docker-compose up "
+            }
+        }
     }
 }
