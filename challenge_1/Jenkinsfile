@@ -10,7 +10,7 @@ pipeline {
         stage('Build & Deploy') {
             steps {
                 sh 'pwd'
-                sh "docker-compose -d -f challenge_1/docker-compose.yaml up"
+                sh "docker-compose -f challenge_1/docker-compose.yaml -d up"
             }
         }
     }
