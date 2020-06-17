@@ -16,7 +16,7 @@ services:
     depends_on:
       - redis
     ports:
-      - "4222:8000"
+      - "8000:8000"
   
   redis:
     image: redis:latest
