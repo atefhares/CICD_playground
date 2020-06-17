@@ -1,0 +1,23 @@
+version: "3.3"
+services:
+  app:
+    build:
+      context: ./challenge_1/PythonApp
+      dockerfile: Dockerfile
+    container_name: python-app
+    environment:
+      - ENVIRONMENT=DEV
+      - HOST=localhost
+      - PORT=8000
+      - REDIS_HOST=db
+      - REDIS_PORT=6379
+      - REDIS_DB=0
+
+    depends_on:
+      - db
+    ports:
+      - "4222:8000"
+
+  db:
+    image: redis:latest
+    container_name: redis-db-python-app
