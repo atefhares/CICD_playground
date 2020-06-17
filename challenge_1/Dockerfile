@@ -5,6 +5,6 @@ WORKDIR /python_app
 # copy the app content to /app
 COPY ./PythonApp /python_app
 # install dependencies from requirements.txt
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 # run app
-CMD python3 hello.py
+CMD python hello.py
