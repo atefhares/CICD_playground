@@ -2,7 +2,7 @@ version: "3.3"
 services:
   app:
     build:
-      context: ./challenge_1/PythonApp
+      context: ./PythonApp
       dockerfile: Dockerfile
     container_name: python-app
     environment:
