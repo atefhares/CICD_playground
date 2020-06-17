@@ -9,7 +9,7 @@ pipeline {
 
         stage('Build & Deploy') {
             steps {
-                sh "docker-compose -f challenge_1/docker-compose.yaml up"
+                sh "sudo docker-compose -f challenge_1/docker-compose.yaml up"
             }
         }
     }
