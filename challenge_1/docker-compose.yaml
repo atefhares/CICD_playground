@@ -3,7 +3,7 @@ services:
   app:
     build:
       context: ./PythonApp
-      dockerfile: challenge_1/Dockerfile
+      dockerfile: ./Dockerfile
     container_name: python-app
     environment:
       - ENVIRONMENT=DEV
