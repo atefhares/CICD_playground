@@ -12,7 +12,7 @@ This repo contains multiple challenges to build CI/CD pipelines.
   
 - ### challenge_5:
   Automating a very simple infrastructure on GCP using terrform.
-  [details](challenge_5)
+  [details](challenge_5/README.md)
   
 ## Copyrights:
 This repo is owned by AH @ ITI - intake 40 , and licensed under the [MIT License](LICENSE)
