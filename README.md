@@ -10,7 +10,7 @@ This repo contains multiple challenges to build CI/CD pipelines.
 - ### Challenge_1:
   Using docker, jenkins to create a pipeline that is pulling code from source control and test it then deploy it. [details](challenge_1/README.md)
   
-- ### challenge_5:
+- ### Challenge_5:
   Automating a very simple infrastructure on GCP using terrform.
   [details](challenge_5/README.md)
   
