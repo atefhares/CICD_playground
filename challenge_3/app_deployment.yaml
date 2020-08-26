@@ -20,13 +20,13 @@ spec:
             - name: HOST
               value: localhost
             - name: PORT
-              value: "8000"
+              value: 8000
             - name: REDIS_HOST
               value: "redis-service"
             - name: REDIS_PORT
-              value: "6379"
+              value: 6379
             - name: REDIS_DB
-              value: "0"
+              value: 0
   replicas: 4
   selector:
       matchLabels:
