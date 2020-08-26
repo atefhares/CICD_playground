@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: python_app_deployment
+  name: python-app-deployment
   namespace: default
 spec:
   template:
