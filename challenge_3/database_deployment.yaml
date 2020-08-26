@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
         - name: redis
-          image: redis:custom
+          image: redis
   selector:
       matchLabels:
         name: redis

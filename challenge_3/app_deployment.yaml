@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: pythonapp
-          image: python:latest
+          image: atefhares/mypythonapp:latest
           ports:
             - containerPort: 8000
           env:
