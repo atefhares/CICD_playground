@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: python-app-deployment
-  namespace: default
 spec:
   template:
     metadata:
@@ -18,7 +17,7 @@ spec:
             - name: ENVIRONMENT
               value: DEV
             - name: HOST
-              value: localhost
+              value: "localhost"
             - name: PORT
               value: "8000"
             - name: REDIS_HOST
