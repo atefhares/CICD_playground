@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udacitypythonapp
+  namespace: default
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      tag: pythonapp
+  template:
+    metadata:
+      labels:
+        tag: pythonapp
+    spec:
+      containers:
+        - name: udacitypythonapp
+          image: atefhares/simple_python_app:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: ENVIRONMENT
+              value: DEV
+            - name: HOST
+              value: localhost
+            - name: PORT
+              value: "8000"
+            - name: REDIS_HOST
+              value: redis-service
+            - name: REDIS_PORT
+              value: "6379"
+            - name: REDIS_DB
+              value: "0"
