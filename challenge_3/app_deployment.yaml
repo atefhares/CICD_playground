@@ -28,5 +28,5 @@ spec:
               value: "0"
   replicas: 1
   selector:
-      matchLabels:
-        tag: pythonapp
+    matchLabels:
+      tag: pythonapp
