@@ -7,10 +7,10 @@ spec:
   template:
     metadata:
       labels:
-        tag: python_app
+        tag: pythonapp
     spec:
       containers:
-        - name: python_app
+        - name: pythonapp
           image: python:latest
           ports:
             - containerPort: 8000
