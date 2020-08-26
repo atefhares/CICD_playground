@@ -10,5 +10,4 @@ spec:
       targetPort: 8000
       protocol: TCP
   selector:
-    matchLabels:
-      tag: pythonapp
+    tag: pythonapp
