@@ -5,9 +5,6 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - nodePort: 30001
-      port: 8000
-      targetPort: 8000
-      protocol: TCP
+    - port: 8000
   selector:
     tag: pythonapp
