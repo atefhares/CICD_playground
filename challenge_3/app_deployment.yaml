@@ -1,21 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: udacitypythonapp
+  name: python_app_deployment
   namespace: default
 spec:
-  replicas: 4
-  selector:
-    matchLabels:
-      tag: pythonapp
   template:
     metadata:
       labels:
-        tag: pythonapp
+        tag: python_app
     spec:
       containers:
-        - name: udacitypythonapp
-          image: atefhares/simple_python_app:latest
+        - name: python_app
+          image: python:latest
           ports:
             - containerPort: 8000
           env:
@@ -31,3 +27,7 @@ spec:
               value: "6379"
             - name: REDIS_DB
               value: "0"
+  replicas: 4
+  selector:
+      matchLabels:
+        tag: pythonapp
