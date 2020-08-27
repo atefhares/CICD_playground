@@ -9,21 +9,21 @@ resource "kubernetes_deployment" "jenkins-deployment" {
 
     selector {
       match_labels = {
-        name = "jenkins"
+        name = var.jenkins_pods_lable
       }
     }
 
     template {
       metadata {
         labels = {
-          name = "jenkins"
+          name = var.jenkins_pods_lable
         }
       }
 
       spec {
         container {
           image = "jenkins:latest"
-          name  = "jenkins"
+          name  = var.jenkins_pods_lable
         }
       }
     }
