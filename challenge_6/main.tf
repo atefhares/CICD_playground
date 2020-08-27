@@ -6,10 +6,10 @@ module "build_namespace" {
   source = "./namesspaces/build"
 }
 
-module "dev_namespace" {
-  source = "./namesspaces/dev"
-}
+# module "dev_namespace" {
+#   source = "./namesspaces/dev"
+# }
 
-module "test_namespace" {
-  source = "./namesspaces/test"
-}
+# module "test_namespace" {
+#   source = "./namesspaces/test"
+# }
