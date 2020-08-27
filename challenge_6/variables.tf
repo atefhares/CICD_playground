@@ -17,3 +17,25 @@ variable "jenkins_pods_lable" {
   type    = string
   default = "jenkins"
 }
+
+variable "nexus_pods_lable" {
+  type    = string
+  default = "nexus"
+}
+
+variable "mysql_pods_lable" {
+  type    = string
+  default = "mysql"
+}
+
+variable "MYSQL_ROOT_PASSWORD" {
+  type = string
+}
+
+variable "MYSQL_USER" {
+  type = string
+}
+
+variable "MYSQL_PASSWORD" {
+  type = string
+}
