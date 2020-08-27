@@ -1,17 +1,17 @@
 resource "kubernetes_namespace" "build-namespace" {
   metadata {
-    name = "build"
+    name = var.build_namespace_name
   }
 }
 
 resource "kubernetes_namespace" "dev-namespace" {
   metadata {
-    name = "dev"
+    name =  var.dev_namespace_name
   }
 }
 
 resource "kubernetes_namespace" "test-namespace" {
   metadata {
-    name = "test"
+    name = var.test_namespace_name
   }
 }
