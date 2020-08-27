@@ -1,7 +1,7 @@
 resource "kubernetes_deployment" "jenkins-deployment" {
   metadata {
     name      = "jenkins-deployment"
-    namespace = [kubernetes_namespace.build-namesapce.metadata.name]
+    namespace = [kubernetes_namespace.build-namespace.metadata.name]
   }
 
   spec {
