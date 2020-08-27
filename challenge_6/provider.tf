@@ -1,3 +1,4 @@
 provider "kubernetes" {
-  config_context = "minikube"
+  config_context_cluster   = "minikube"
+  # host = ""
 }
