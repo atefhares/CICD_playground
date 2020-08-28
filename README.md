@@ -14,5 +14,9 @@ This repo contains multiple challenges to build CI/CD pipelines.
   Automating a very simple infrastructure on GCP using terrform.
   [details](challenge_5/README.md)
   
+- ### Challenge_6:
+  Using Terraform to setup resources on k8s cluster.
+  [details](challenge_6/README.md)
+  
 ## Copyrights:
 This repo is owned by AH @ ITI - intake 40 , and licensed under the [MIT License](LICENSE)
