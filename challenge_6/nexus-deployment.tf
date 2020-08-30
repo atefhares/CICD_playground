@@ -18,10 +18,6 @@ resource "kubernetes_deployment" "nexus-deployment" {
     }
 
     template {
-      security_context {
-        fs_group = 200
-      }
-
       metadata {
         labels = {
           name = var.nexus_pods_lable
@@ -29,6 +25,10 @@ resource "kubernetes_deployment" "nexus-deployment" {
       }
 
       spec {
+        security_context {
+          fs_group = 200
+        }
+
         volume {
           name = kubernetes_persistent_volume.nexus-volume.metadata.0.name
           persistent_volume_claim {
