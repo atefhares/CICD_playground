@@ -25,11 +25,23 @@ resource "kubernetes_deployment" "nexus-deployment" {
       }
 
       spec {
+        volume {
+          name = kubernetes_persistent_volume.nexus-volume.metadata.0.name
+          persistent_volume_claim {
+            claim_name = kubernetes_persistent_volume_claim.nexus-volume-claim.metadata.0.name
+          }
+        }
+
         container {
           image = "sonatype/nexus3:latest"
           name  = var.nexus_pods_lable
           port {
             container_port = 8081
+          }
+
+          volume_mount {
+            name       = kubernetes_persistent_volume.jenkins-volume.metadata.0.name
+            mount_path = "/nexus-data"
           }
         }
       }
