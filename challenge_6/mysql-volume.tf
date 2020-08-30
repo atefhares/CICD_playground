@@ -24,7 +24,23 @@ resource "kubernetes_persistent_volume" "mysql-volume" {
 resource "kubernetes_persistent_volume_claim" "mysql-volume-claim" {
   metadata {
     name      = "mysql-volume-claim"
-    namespace = var.build_namespace_name
+    namespace = var.dev_namespace_name
+  }
+  spec {
+    access_modes = ["ReadWriteMany"]
+    resources {
+      requests = {
+        storage = "1Gi"
+      }
+    }
+    volume_name = kubernetes_persistent_volume.mysql-volume.metadata.0.name
+  }
+}
+
+resource "kubernetes_persistent_volume_claim" "mysql-volume-claim" {
+  metadata {
+    name      = "mysql-volume-claim"
+    namespace = var.test_namespace_name
   }
   spec {
     access_modes = ["ReadWriteMany"]
