@@ -1,4 +1,4 @@
-resource "kubernetes_deployment" "jenkins_deployment" {
+resource "kubernetes_deployment" "jenkins-deployment" {
   metadata {
     name      = "jenkins-deployment"
     namespace = var.build_namespace_name
@@ -31,7 +31,7 @@ resource "kubernetes_deployment" "jenkins_deployment" {
 
         init_container {
           image   = "debian:latest"
-          name    = "init_container_1"
+          name    = "init-container-1"
           command = ["bash", "-c", "RUN apt update && apt install -y curl && curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl"]
         }
       }
