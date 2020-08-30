@@ -16,6 +16,7 @@ resource "kubernetes_persistent_volume" "jenkins-volume" {
         path = "/jenkins-data"
       }
     }
+    storage_class_name = "standard"
   }
 }
 
