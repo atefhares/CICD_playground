@@ -22,7 +22,8 @@ resource "kubernetes_persistent_volume" "jenkins-volume" {
 
 resource "kubernetes_persistent_volume_claim" "jenkins-volume-claim" {
   metadata {
-    name = "jenkins-volume-claim"
+    name      = "jenkins-volume-claim"
+    namespace = var.build_namespace_name
   }
   spec {
     access_modes = ["ReadWriteMany"]
