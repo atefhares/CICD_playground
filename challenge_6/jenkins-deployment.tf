@@ -45,7 +45,7 @@ resource "kubernetes_deployment" "jenkins-deployment" {
         # }
 
         volume {
-          name = "jenkins_working_dir"
+          name = "jenkins-working-dir"
           empty_dir {}
         }
       }
