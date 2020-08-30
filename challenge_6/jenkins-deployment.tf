@@ -34,7 +34,7 @@ resource "kubernetes_deployment" "jenkins-deployment" {
           }
 
           volume_mount {
-            name       = kubernetes_persistent_volume.jenkins-volume.metadata.name
+            name       = kubernetes_persistent_volume.jenkins-volume.metadata[0]
             mount_path = "/var/jenkins_home"
           }
         }
