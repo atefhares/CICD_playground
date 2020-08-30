@@ -1,4 +1,8 @@
 resource "kubernetes_deployment" "nexus-deployment" {
+  depends_on = [
+    kubernetes_namespace.build-namespace,
+  ]
+
   metadata {
     name      = "nexus-deployment"
     namespace = var.build_namespace_name

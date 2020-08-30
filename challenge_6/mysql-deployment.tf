@@ -1,4 +1,8 @@
 resource "kubernetes_deployment" "mysql-dev-deployment" {
+  depends_on = [
+    kubernetes_namespace.dev-namespace,
+  ]
+
   metadata {
     name      = "mysql-deployment"
     namespace = var.dev_namespace_name
@@ -45,6 +49,10 @@ resource "kubernetes_deployment" "mysql-dev-deployment" {
   }
 }
 resource "kubernetes_deployment" "mysql-test-deployment" {
+  depends_on = [
+    kubernetes_namespace.test-namespace,
+  ]
+
   metadata {
     name      = "mysql-deployment"
     namespace = var.test_namespace_name
