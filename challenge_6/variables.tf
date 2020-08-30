@@ -15,7 +15,7 @@ variable "test_namespace_name" {
 
 variable "jenkins_pods_lable" {
   type    = string
-  default = "jenkins"
+  default = "jenkin2s"
 }
 
 variable "nexus_pods_lable" {
