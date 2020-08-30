@@ -1,4 +1,4 @@
-resource "kubernetes_deployment" "jenkins-deployment" {
+resource "kubernetes_deployment" "jenkins_deployment" {
   metadata {
     name      = "jenkins-deployment"
     namespace = var.build_namespace_name
