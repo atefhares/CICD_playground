@@ -20,7 +20,7 @@ variable "jenkins_pods_lable" {
 
 variable "nexus_pods_lable" {
   type    = string
-  default = "nexus"
+  default = "nexus1"
 }
 
 variable "mysql_pods_lable" {
