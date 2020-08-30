@@ -33,10 +33,10 @@ resource "kubernetes_deployment" "jenkins-deployment" {
           image   = "debian:latest"
           name    = "init_container_1"
           command = "RUN apt update && \
-      apt install -y curl && \
-      curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && \
-      chmod +x ./kubectl && \
-      mv ./kubectl /usr/local/bin/kubectl"
+          apt install -y curl && \
+          curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && \
+          chmod +x ./kubectl && \
+          mv ./kubectl /usr/local/bin/kubectl"
         }
       }
     }
