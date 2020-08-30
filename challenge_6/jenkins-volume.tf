@@ -11,8 +11,10 @@ resource "kubernetes_persistent_volume" "jenkins-volume" {
       storage = "2Gi"
     }
     access_modes = ["ReadWriteMany"]
-    host_path {
-      path = "/jenkins-data"
+    persistent_volume_source {
+      vsphere_volume {
+        volume_path = "/jenkins-data"
+      }
     }
   }
 }
