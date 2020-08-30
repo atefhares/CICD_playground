@@ -30,9 +30,9 @@ resource "kubernetes_deployment" "mysql-dev-deployment" {
         }
 
         volume {
-          name = kubernetes_persistent_volume.mysql-volume.metadata.0.name
+          name = kubernetes_persistent_volume.mysql-volume-dev.metadata.0.name
           persistent_volume_claim {
-            claim_name = kubernetes_persistent_volume_claim.mysql-volume-claim-namespace-dev.metadata.0.name
+            claim_name = kubernetes_persistent_volume_claim.mysql-volume-claim-dev.metadata.0.name
           }
         }
 
@@ -55,7 +55,7 @@ resource "kubernetes_deployment" "mysql-dev-deployment" {
             value = var.MYSQL_ROOT_PASSWORD
           }
           volume_mount {
-            name       = kubernetes_persistent_volume.mysql-volume.metadata.0.name
+            name       = kubernetes_persistent_volume.mysql-volume-dev.metadata.0.name
             mount_path = "/var/lib/mysql"
           }
         }
@@ -95,9 +95,9 @@ resource "kubernetes_deployment" "mysql-test-deployment" {
         }
 
         volume {
-          name = kubernetes_persistent_volume.mysql-volume.metadata.0.name
+          name = kubernetes_persistent_volume.mysql-volume-test.metadata.0.name
           persistent_volume_claim {
-            claim_name = kubernetes_persistent_volume_claim.mysql-volume-claim-namespace-test.metadata.0.name
+            claim_name = kubernetes_persistent_volume_claim.mysql-volume-claim-test.metadata.0.name
           }
         }
 
@@ -121,7 +121,7 @@ resource "kubernetes_deployment" "mysql-test-deployment" {
           }
 
           volume_mount {
-            name       = kubernetes_persistent_volume.mysql-volume.metadata.0.name
+            name       = kubernetes_persistent_volume.mysql-volume-test.metadata.0.name
             mount_path = "/var/lib/mysql"
           }
         }
