@@ -40,7 +40,7 @@ resource "kubernetes_deployment" "nexus-deployment" {
           }
 
           volume_mount {
-            name       = kubernetes_persistent_volume.jenkins-volume.metadata.0.name
+            name       = kubernetes_persistent_volume.nexus-volume.metadata.0.name
             mount_path = "/nexus-data"
           }
         }
