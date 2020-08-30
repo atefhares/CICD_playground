@@ -18,6 +18,10 @@ resource "kubernetes_deployment" "nexus-deployment" {
     }
 
     template {
+      security_context {
+        fs_group = 200
+      }
+
       metadata {
         labels = {
           name = var.nexus_pods_lable
