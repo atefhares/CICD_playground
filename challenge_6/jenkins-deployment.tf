@@ -25,14 +25,14 @@ resource "kubernetes_deployment" "jenkins-deployment" {
         }
       }
 
-      volume {
-        name = kubernetes_persistent_volume.jenkins-volume.metadata.0.name
-        persistent_volume_claim = {
-          claim_name = kubernetes_persistent_volume_claim.jenkins-volume-claim.metadata.0.name
-        }
-      }
-      
       spec {
+        volume {
+          name = kubernetes_persistent_volume.jenkins-volume.metadata.0.name
+          persistent_volume_claim {
+            claim_name = kubernetes_persistent_volume_claim.jenkins-volume-claim.metadata.0.name
+          }
+        }
+        
         container {
           image = "jenkins/jenkins"
           name  = var.jenkins_pods_lable
