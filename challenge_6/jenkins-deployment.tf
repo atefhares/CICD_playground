@@ -32,10 +32,10 @@ resource "kubernetes_deployment" "jenkins-deployment" {
             container_port = 8080
           }
 
-          # volume_mount {
-          #   name       = "jenkins_working_dir"
-          #   mount_path = "/var/jenkins_home"
-          # }
+          volume_mount {
+            name       = "jenkins-working-dir"
+            mount_path = "/var/jenkins_home"
+          }
         }
 
         # init_container {
