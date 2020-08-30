@@ -18,6 +18,12 @@ resource "kubernetes_deployment" "jenkins-deployment" {
       }
     }
 
+    volumes {
+      name = kubernetes_persistent_volume.jenkins-volume.metadata.0.name
+      persistentVolumeClaim = {
+        claim_name = kubernetes_persistent_volume_claim.jenkins-volume-claim.metadata.0.name
+      }
+    }
     template {
       metadata {
         labels = {
@@ -34,7 +40,7 @@ resource "kubernetes_deployment" "jenkins-deployment" {
           }
 
           volume_mount {
-            name       = kubernetes_persistent_volume.jenkins-volume.metadata[0].name
+            name       = kubernetes_persistent_volume.jenkins-volume.metadata.name
             mount_path = "/var/jenkins_home"
           }
         }

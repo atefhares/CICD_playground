@@ -18,3 +18,19 @@ resource "kubernetes_persistent_volume" "jenkins-volume" {
     }
   }
 }
+
+
+resource "kubernetes_persistent_volume_claim" "jenkins-volume-claim" {
+  metadata {
+    name = "jenkins-volume-claim"
+  }
+  spec {
+    access_modes = ["ReadWriteMany"]
+    resources {
+      requests = {
+        storage = "1Gi"
+      }
+    }
+    volume_name = kubernetes_persistent_volume.jenkins-volume.metadata.0.name
+  }
+}
