@@ -32,7 +32,7 @@ resource "kubernetes_deployment" "mysql-dev-deployment" {
         volume {
           name = kubernetes_persistent_volume.mysql-volume.metadata.0.name
           persistent_volume_claim {
-            claim_name = kubernetes_persistent_volume_claim.mysql-volume-claim.metadata.0.name
+            claim_name = kubernetes_persistent_volume_claim.mysql-volume-claim-namespace-dev.metadata.0.name
           }
         }
 
@@ -97,7 +97,7 @@ resource "kubernetes_deployment" "mysql-test-deployment" {
         volume {
           name = kubernetes_persistent_volume.mysql-volume.metadata.0.name
           persistent_volume_claim {
-            claim_name = kubernetes_persistent_volume_claim.mysql-volume-claim.metadata.0.name
+            claim_name = kubernetes_persistent_volume_claim.mysql-volume-claim-namespace-test.metadata.0.name
           }
         }
 
