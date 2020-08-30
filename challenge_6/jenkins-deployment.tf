@@ -18,12 +18,13 @@ resource "kubernetes_deployment" "jenkins-deployment" {
       }
     }
 
-    volumes {
+    volume {
       name = kubernetes_persistent_volume.jenkins-volume.metadata.0.name
       persistentVolumeClaim = {
         claim_name = kubernetes_persistent_volume_claim.jenkins-volume-claim.metadata.0.name
       }
     }
+    
     template {
       metadata {
         labels = {
