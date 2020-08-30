@@ -1,6 +1,7 @@
 resource "kubernetes_deployment" "jenkins-deployment" {
   depends_on = [
     kubernetes_namespace.build-namespace,
+    kubernetes_persistent_volume.jenkins-volume,
   ]
 
   metadata {
@@ -33,7 +34,7 @@ resource "kubernetes_deployment" "jenkins-deployment" {
           }
 
           volume_mount {
-            name       = "jenkins-working-dir"
+            name       = "jenkins-volume"
             mount_path = "/var/jenkins_home"
           }
         }
@@ -43,11 +44,6 @@ resource "kubernetes_deployment" "jenkins-deployment" {
         #   name    = "init-container-1"
         #   command = ["bash", "-c", "apt update && apt install -y curl && curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl"]
         # }
-
-        volume {
-          name = "jenkins-working-dir"
-          empty_dir {}
-        }
       }
     }
   }
