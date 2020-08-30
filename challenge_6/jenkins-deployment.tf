@@ -26,7 +26,7 @@ resource "kubernetes_deployment" "jenkins-deployment" {
 
       spec {
         container {
-          image = "jenkins:latest"
+          image = "jenkins/jenkins"
           name  = var.jenkins_pods_lable
           port {
             container_port = 8080
