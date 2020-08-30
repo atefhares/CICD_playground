@@ -21,7 +21,7 @@ resource "kubernetes_persistent_volume" "mysql-volume" {
 }
 
 
-resource "kubernetes_persistent_volume_claim" "mysql-volume-claim" {
+resource "kubernetes_persistent_volume_claim" "mysql-volume-claim-namespace-dev" {
   metadata {
     name      = "mysql-volume-claim"
     namespace = var.dev_namespace_name
@@ -37,7 +37,7 @@ resource "kubernetes_persistent_volume_claim" "mysql-volume-claim" {
   }
 }
 
-resource "kubernetes_persistent_volume_claim" "mysql-volume-claim" {
+resource "kubernetes_persistent_volume_claim" "mysql-volume-claim-namespace-test" {
   metadata {
     name      = "mysql-volume-claim"
     namespace = var.test_namespace_name
