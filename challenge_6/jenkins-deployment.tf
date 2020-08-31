@@ -69,7 +69,7 @@ resource "kubernetes_deployment" "jenkins-deployment" {
             container_port = 8080
           }
 
-          command = ["bash", "-c", "apt-get update -y && apt install -y apt-transport-https ca-certificates curl software-properties-common && curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable' && apt-get update -y && apt-get install -y docker-ce docker-ce-cli containerd.io"]
+          # command = ["bash", "-c", "apt-get update -y && apt install -y apt-transport-https ca-certificates curl software-properties-common && curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable' && apt-get update -y && apt-get install -y docker-ce docker-ce-cli containerd.io"]
 
           volume_mount {
             name       = kubernetes_persistent_volume.jenkins-volume.metadata.0.name
