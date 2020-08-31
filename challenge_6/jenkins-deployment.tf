@@ -29,12 +29,17 @@ resource "kubernetes_deployment" "jenkins-deployment" {
         security_context {
           fs_group = 1000
         }
-        
+
         volume {
           name = kubernetes_persistent_volume.jenkins-volume.metadata.0.name
           persistent_volume_claim {
             claim_name = kubernetes_persistent_volume_claim.jenkins-volume-claim.metadata.0.name
           }
+        }
+
+        volume {
+          name = "kubectl"
+          empty_dir {}
         }
 
         container {
@@ -46,15 +51,24 @@ resource "kubernetes_deployment" "jenkins-deployment" {
 
           volume_mount {
             name       = kubernetes_persistent_volume.jenkins-volume.metadata.0.name
-            mount_path = "/"
+            mount_path = "/var/jenkins_home"
+          }
+
+          volume_mount {
+            name       = "kubectl"
+            mount_path = "/usr/local/bin/kubectl"
           }
         }
 
-        # init_container {
-        #   image   = "jenkins/jenkins"
-        #   name    = "init-container-1"
-        #   command = ["bash", "-c", "apt update && apt install -y curl && curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl"]
-        # }
+        init_container {
+          image   = "jenkins/jenkins"
+          name    = "init-container-1"
+          command = ["bash", "-c", "apt update && apt install -y curl && curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl"]
+          volume_mount {
+            name       = "kubectl"
+            mount_path = "/usr/local/bin/kubectl"
+          }
+        }
       }
     }
   }
