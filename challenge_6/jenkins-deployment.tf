@@ -26,7 +26,7 @@ resource "kubernetes_deployment" "jenkins-deployment" {
       }
 
       spec {
-        service_account_name            = kubernetes_service_account.jenkins-sa-build.metadata.0.name
+        service_account_name            = kubernetes_service_account.jenkins-sa.metadata.0.name
         automount_service_account_token = "true"
         security_context {
           fs_group = 1000
