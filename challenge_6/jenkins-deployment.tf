@@ -43,6 +43,16 @@ resource "kubernetes_deployment" "jenkins-deployment" {
           name = "kubectl"
           empty_dir {}
         }
+        volume {
+          name = "docker"
+          empty_dir {}
+        }
+        volume {
+          name = "docker-sock"
+          host_path {
+            path = "/var/run"
+          }
+        }
 
         container {
           image = "jenkins/jenkins"
@@ -60,15 +70,33 @@ resource "kubernetes_deployment" "jenkins-deployment" {
             name       = "kubectl"
             mount_path = "/usr/local/bin/kubectl"
           }
+          volume_mount {
+            name       = "docker"
+            mount_path = "/usr/bin/docker"
+          }
+          volume_mount {
+            name       = "docker-sock"
+            mount_path = "/var/run"
+          }
         }
 
         init_container {
           image   = "jenkins/jenkins"
-          name    = "init-container-1"
+          name    = "init-container-install-kubectl"
           command = ["bash", "-c", "apt update && apt install -y curl && curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl"]
           volume_mount {
             name       = "kubectl"
             mount_path = "/usr/local/bin/kubectl"
+          }
+        }
+
+        init_container {
+          image   = "jenkins/jenkins"
+          name    = "init-container-install-docker"
+          command = ["bash", "-c", "apt update && apt install -y curl && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && apt-get install -y docker-ce docker-ce-cli containerd.io"]
+          volume_mount {
+            name       = "docker"
+            mount_path = "/usr/bin/docker"
           }
         }
       }
