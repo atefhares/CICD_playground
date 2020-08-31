@@ -4,6 +4,7 @@ resource "kubernetes_role" "modify-pods-role" {
     labels = {
       test = "MyRole"
     }
+    namespace = var.build_namespace_name
   }
 
   rule {
