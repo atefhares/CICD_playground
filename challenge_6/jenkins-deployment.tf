@@ -26,8 +26,8 @@ resource "kubernetes_deployment" "jenkins-deployment" {
       }
 
       spec {
-        service_account_name = "internal-kubectl"
-
+        service_account_name            = "internal-kubectl"
+        automount_service_account_token = "true"
         security_context {
           fs_group = 1000
         }
