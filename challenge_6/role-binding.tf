@@ -12,6 +12,6 @@ resource "kubernetes_role_binding" "modify-pods-role-binding" {
     kind      = "ServiceAccount"
     name      = "internal-kubectl"
     namespace = var.build_namespace_name
-    api_group = "rbac.authorization.k8s.io"
+    # api_group = "rbac.authorization.k8s.io"
   }
 }
