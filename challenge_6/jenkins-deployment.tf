@@ -43,10 +43,10 @@ resource "kubernetes_deployment" "jenkins-deployment" {
           name = "kubectl"
           empty_dir {}
         }
-        volume {
-          name = "docker"
-          empty_dir {}
-        }
+        # volume {
+        #   name = "docker"
+        #   empty_dir {}
+        # }
         volume {
           name = "docker-sock"
           host_path {
@@ -60,6 +60,8 @@ resource "kubernetes_deployment" "jenkins-deployment" {
           port {
             container_port = 8080
           }
+
+          command = ["bash", "-c", "apt-get update -y && apt install -y apt-transport-https ca-certificates curl software-properties-common && curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable' && apt-get update -y && apt-get install -y docker-ce docker-ce-cli containerd.io"]
 
           volume_mount {
             name       = kubernetes_persistent_volume.jenkins-volume.metadata.0.name
@@ -90,15 +92,15 @@ resource "kubernetes_deployment" "jenkins-deployment" {
           }
         }
 
-        init_container {
-          image   = "ubuntu"
-          name    = "init-container-install-docker"
-          command = ["bash", "-c", "apt-get update -y && apt install -y apt-transport-https ca-certificates curl software-properties-common && curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable' && apt-get update -y && apt-get install -y docker-ce docker-ce-cli containerd.io"]
-          volume_mount {
-            name       = "docker"
-            mount_path = "/usr/bin/docker"
-          }
-        }
+        # init_container {
+        #   image   = "ubuntu"
+        #   name    = "init-container-install-docker"
+        #   command = ["bash", "-c", "apt-get update -y && apt install -y apt-transport-https ca-certificates curl software-properties-common && curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable' && apt-get update -y && apt-get install -y docker-ce docker-ce-cli containerd.io"]
+        #   volume_mount {
+        #     name       = "docker"
+        #     mount_path = "/usr/bin/docker"
+        #   }
+        # }
       }
     }
   }
