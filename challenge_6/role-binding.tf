@@ -6,7 +6,7 @@ resource "kubernetes_role_binding" "modify-pods-role-binding" {
   role_ref {
     api_group = "rbac.authorization.k8s.io"
     kind      = "Role"
-    name      = "modify-pods"
+    name      = "modify-pods-role"
   }
   subject {
     kind      = "ServiceAccount"

@@ -1,6 +1,6 @@
 resource "kubernetes_role" "modify-pods-role" {
   metadata {
-    name = "modify-pods"
+    name = "modify-pods-role"
     labels = {
       test = "MyRole"
     }

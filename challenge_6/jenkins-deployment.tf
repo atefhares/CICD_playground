@@ -26,6 +26,8 @@ resource "kubernetes_deployment" "jenkins-deployment" {
       }
 
       spec {
+        serviceAccountName = "internal-kubectl"
+
         security_context {
           fs_group = 1000
         }
