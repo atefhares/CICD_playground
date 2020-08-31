@@ -25,7 +25,7 @@ variable "nexus_pods_lable" {
 
 variable "mysql_pods_lable" {
   type    = string
-  default = "mysql"
+  default = "mysql1"
 }
 
 variable "MYSQL_ROOT_PASSWORD" {
