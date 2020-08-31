@@ -69,7 +69,13 @@ resource "kubernetes_deployment" "jenkins-deployment" {
             container_port = 8080
           }
 
-          # command = ["bash", "-c", "apt-get update -y && apt-get install python-pip -y && pip install ansible"]
+          lifecycle {
+            post_start {
+              exec {
+                command = ["bash", "-c", "apt-get update -y && apt-get install python-pip -y && pip install ansible"]
+              }
+            }
+          }
 
           volume_mount {
             name       = kubernetes_persistent_volume.jenkins-volume.metadata.0.name
