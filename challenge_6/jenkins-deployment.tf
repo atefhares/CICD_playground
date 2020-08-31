@@ -72,7 +72,7 @@ resource "kubernetes_deployment" "jenkins-deployment" {
           }
           volume_mount {
             name       = "docker"
-            mount_path = "/usr/local/bin/docker"
+            mount_path = "/usr/bin/docker"
           }
           volume_mount {
             name       = "docker-sock"
@@ -91,12 +91,12 @@ resource "kubernetes_deployment" "jenkins-deployment" {
         }
 
         init_container {
-          image   = "ubuntu"
+          image   = "jenkins/jenkins"
           name    = "init-container-install-docker"
-          command = ["bash", "-c", "apt-get update -y && apt install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\" && apt-get update -y && apt-get install -y docker-ce-cli"]
+          command = ["bash", "-c", "apt-get update -y && apt install -y apt-transport-https ca-certificates curl software-properties-common && curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable' && apt-get update -y && apt-get install -y docker-ce-cli"]
           volume_mount {
             name       = "docker"
-            mount_path = "/usr/local/bin/docker"
+            mount_path = "/usr/bin/docker"
           }
         }
       }
