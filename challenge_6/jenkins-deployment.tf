@@ -93,7 +93,7 @@ resource "kubernetes_deployment" "jenkins-deployment" {
         init_container {
           image   = "jenkins/jenkins"
           name    = "init-container-install-docker"
-          command = ["bash", "-c", "apt update && apt install -y curl && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && apt-get install -y docker-ce docker-ce-cli containerd.io"]
+          command = ["bash", "-c", "apt update && apt install -y curl && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && apt-get install -y docker-ce docker-ce-cli containerd.io"]
           volume_mount {
             name       = "docker"
             mount_path = "/usr/bin/docker"
