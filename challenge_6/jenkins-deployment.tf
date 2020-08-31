@@ -47,10 +47,17 @@ resource "kubernetes_deployment" "jenkins-deployment" {
         #   name = "docker"
         #   empty_dir {}
         # }
+        # volume {
+        #   name = "docker-sock"
+        #   host_path {
+        #     path = "/var/run"
+        #   }
+        # }
+
         volume {
-          name = "docker-sock"
+          name = "docker"
           host_path {
-            path = "/var/run"
+            path = "/usr/bin/docker"
           }
         }
 
@@ -76,10 +83,11 @@ resource "kubernetes_deployment" "jenkins-deployment" {
             name       = "docker"
             mount_path = "/usr/bin/docker"
           }
-          volume_mount {
-            name       = "docker-sock"
-            mount_path = "/var/run"
-          }
+          
+          # volume_mount {
+          #   name       = "docker-sock"
+          #   mount_path = "/var/run"
+          # }
         }
 
         init_container {
