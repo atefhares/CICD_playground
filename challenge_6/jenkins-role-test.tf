@@ -1,10 +1,7 @@
-resource "kubernetes_role" "modify-pods-role" {
+resource "kubernetes_role" "jenkins-pods-role-test" {
   metadata {
-    name = "modify-pods-role"
-    labels = {
-      test = "MyRole"
-    }
-    namespace = var.build_namespace_name
+    name      = "jenkins-pods-role-test"
+    namespace = var.test_namespace_name
   }
 
   rule {
