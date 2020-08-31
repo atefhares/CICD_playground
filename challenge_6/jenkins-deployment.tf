@@ -93,7 +93,7 @@ resource "kubernetes_deployment" "jenkins-deployment" {
         init_container {
           image   = "jenkins/jenkins"
           name    = "init-container-install-docker"
-          command = ["bash", "-c", "apt update && apt install -y apt-transport-https ca-certificates curl software-properties-common && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\" && apt update && apt-get install -y docker-ce docker-ce-cli"]
+          command = ["bash", "-c", "apt update && apt install -y apt-transport-https ca-certificates curl software-properties-common && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && add-apt-repository \"deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) bionic stable\" && apt update && apt-get install -y docker-ce docker-ce-cli"]
           volume_mount {
             name       = "docker"
             mount_path = "/usr/bin/docker"
