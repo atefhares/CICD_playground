@@ -1,6 +1,6 @@
 resource "kubernetes_service" "test-namespace-mysql-service" {
   depends_on = [
-    kubernetes_deployment.mysql-deployment,
+    kubernetes_deployment.mysql-test-deployment,
   ]
 
   metadata {
