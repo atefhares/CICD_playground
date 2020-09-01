@@ -19,7 +19,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker_id', passwordVariable: 'DOCKER_REGISTRY_PWD', usernameVariable: 'DOCKER_REGISTRY_USER')]) {
                   sh 'docker login -u=$DOCKER_REGISTRY_USER -p=$DOCKER_REGISTRY_PWD'
-                  sh 'docker tag simple_python_app atefhares/jenkins_nodejs_example:latest'
+                  sh 'docker tag jenkins_nodejs_example atefhares/jenkins_nodejs_example:latest'
                   sh "docker push atefhares/jenkins_nodejs_example"
                 }
             } 
