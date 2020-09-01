@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    stages {
+        stage('Cloning') {
+            steps {
+               sh "git clone https://github.com/atefhares/jenkins_nodejs_example ./jenkins_nodejs_example"
+            }
+        }
+
+        stage('Building') {
+            steps {
+                sh "docker build --tag=jenkins_nodejs_example ./jenkins_nodejs_example"
+            }
+        }
+
+        stage('Pushing') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker_id', passwordVariable: 'DOCKER_REGISTRY_PWD', usernameVariable: 'DOCKER_REGISTRY_USER')]) {
+                  sh 'docker login -u=$DOCKER_REGISTRY_USER -p=$DOCKER_REGISTRY_PWD'
+                  sh 'docker tag simple_python_app atefhares/jenkins_nodejs_example:latest'
+                  sh "docker push atefhares/jenkins_nodejs_example"
+                }
+            } 
+        }
+    }
+}
