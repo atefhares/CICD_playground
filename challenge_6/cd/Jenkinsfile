@@ -10,9 +10,10 @@ pipeline {
         stage('Deploying') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'mysql_data', passwordVariable: 'mysql_password', usernameVariable: 'mysql_username')]) {
-                  sh 'kubectl create configmap mysql-config --from-literal=USERNAME=$mysql_username --from-literal=PASSWORD=$mysql_password --from-literal=DATABASE=$db_name'
+                  sh "echo P: $mysql_password && U: $mysql_username"
+                  // sh 'kubectl create configmap mysql-config --from-literal=USERNAME=$mysql_username --from-literal=PASSWORD=$mysql_password --from-literal=DATABASE=$db_name'
                 }
-                sh ""
+                // sh ""
             } 
         }
     }
