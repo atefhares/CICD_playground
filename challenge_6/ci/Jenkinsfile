@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Cloning') {
             steps {
+              sh "rm -rf ./jenkins_nodejs_example"
                sh "git clone https://github.com/atefhares/jenkins_nodejs_example ./jenkins_nodejs_example"
                sh "cd ./jenkins_nodejs_example && git checkout $commit_id"
             }
