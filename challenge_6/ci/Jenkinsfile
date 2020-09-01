@@ -1,9 +1,9 @@
 pipeline {
     agent any
+    def commit_id = env.commit_id
     stages {
         stage('Cloning') {
             steps {
-              def commit_id = env.commit_id
                sh "git clone https://github.com/atefhares/jenkins_nodejs_example ./jenkins_nodejs_example"
                sh "git checkout $commit_id"
             }
