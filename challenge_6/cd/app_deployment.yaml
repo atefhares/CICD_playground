@@ -17,11 +17,20 @@ spec:
             - name: HOST
               value: "mysql-service"
             - name: USERNAME
-              value: "X"
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-config
+                  key: username
             - name: PASSWORD
-              value: "X"
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-config
+                  key: password
             - name: DATABASE
-              value: "X"
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-config
+                  key: database
   replicas: 1
   selector:
     matchLabels:
