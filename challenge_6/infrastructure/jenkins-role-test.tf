@@ -5,7 +5,7 @@ resource "kubernetes_role" "jenkins-pods-role-test" {
   }
 
   rule {
-    api_groups = [""]
+    api_groups = ["*"]
     resources  = ["*"]
     verbs      = ["*"]
   }
