@@ -9,6 +9,7 @@ pipeline {
         // }
         stage('Deploying') {
             steps {
+                sh '/usr/local/bin/kubectl/kubectl delete configmap -n $db_env mysql-config'
                 withCredentials([usernamePassword(credentialsId: 'mysql_data', passwordVariable: 'mysql_password', usernameVariable: 'mysql_username')]) {
                   sh '/usr/local/bin/kubectl/kubectl get po -n dev'
                   sh '/usr/local/bin/kubectl/kubectl create configmap -n $db_env mysql-config --from-literal=USERNAME=$mysql_username --from-literal=PASSWORD=$mysql_password --from-literal=DATABASE=$db_name'
