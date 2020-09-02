@@ -13,8 +13,11 @@ pipeline {
                   sh '/usr/local/bin/kubectl/kubectl get po -n dev'
                   sh '/usr/local/bin/kubectl/kubectl create configmap -n $db_env mysql-config --from-literal=USERNAME=$mysql_username --from-literal=PASSWORD=$mysql_password --from-literal=DATABASE=$db_name'
                 }
+                sh "pwd"
                 sh "ls -la"
+                sh "pwd"
                 sh "cd challenge_6/cd"
+                sh "pwd"
                 sh "ls -la"
                 sh "/usr/local/bin/kubectl/kubectl apply -n $db_env -f app_deployment.yaml -f app_service.yaml"
             } 
