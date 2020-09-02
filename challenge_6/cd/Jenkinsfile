@@ -15,6 +15,7 @@ pipeline {
                 }
                 sh "ls -la"
                 sh "cd challenge_6/cd"
+                sh "ls -la"
                 sh "/usr/local/bin/kubectl/kubectl apply -n $db_env -f app_deployment.yaml -f app_service.yaml"
             } 
         }
