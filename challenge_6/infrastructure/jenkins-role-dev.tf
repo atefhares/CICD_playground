@@ -6,7 +6,7 @@ resource "kubernetes_role" "jenkins-pods-role-dev" {
 
   rule {
     api_groups = [""]
-    resources  = ["pods"]
-    verbs      = ["get", "list", "watch", "delete", "create", "update", "patch"]
+    resources  = ["*"]
+    verbs      = ["*"]
   }
 }
