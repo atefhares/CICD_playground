@@ -1,19 +1,20 @@
 pipeline {
     agent any
     stages {
-        stage('Cloning') {
-            steps {
-               sh "ls -la"
-              //  sh "git clone https://github.com/atefhares/jenkins_nodejs_example ./ymal_files"
-            }
-        }
+        // stage('Cloning') {
+        //     steps {
+        //        sh "ls -la"
+        //       //  sh "git clone https://github.com/atefhares/jenkins_nodejs_example ./ymal_files"
+        //     }
+        // }
         stage('Deploying') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'mysql_data', passwordVariable: 'mysql_password', usernameVariable: 'mysql_username')]) {
-                  sh "echo P: $mysql_password && U: $mysql_username"
-                  // sh 'kubectl create configmap mysql-config --from-literal=USERNAME=$mysql_username --from-literal=PASSWORD=$mysql_password --from-literal=DATABASE=$db_name'
+                  sh "echo P: $mysql_password && U: $mysql_username && db: $db_name"
+                  sh 'kubectl create configmap mysql-config --from-literal=USERNAME=$mysql_username --from-literal=PASSWORD=$mysql_password --from-literal=DATABASE=$db_name'
                 }
-                // sh ""
+                sh "cd challenge_6/cd"
+                sh "kubectl apply -f ."
             } 
         }
     }
