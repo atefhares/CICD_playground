@@ -19,7 +19,7 @@ pipeline {
     }
     post { 
         always { 
-            sh '/usr/local/bin/kubectl/kubectl delete configmap -n $db_env mysql-config'
+            // sh '/usr/local/bin/kubectl/kubectl delete configmap -n $db_env mysql-config'
             cleanWs()
         }
     }
