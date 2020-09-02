@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage('Cloning') {
             steps {
-               sh "rm -rf ./ymal_files"
-               sh "git clone https://github.com/atefhares/jenkins_nodejs_example ./ymal_files"
+               sh "ls -la"
+              //  sh "git clone https://github.com/atefhares/jenkins_nodejs_example ./ymal_files"
             }
         }
         stage('Deploying') {
