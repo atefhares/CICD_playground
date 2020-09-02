@@ -20,17 +20,17 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: mysql-config
-                  key: username
+                  key: USERNAME
             - name: PASSWORD
               valueFrom:
                 configMapKeyRef:
                   name: mysql-config
-                  key: password
+                  key: PASSWORD
             - name: DATABASE
               valueFrom:
                 configMapKeyRef:
                   name: mysql-config
-                  key: database
+                  key: DATABASE
   replicas: 1
   selector:
     matchLabels:
