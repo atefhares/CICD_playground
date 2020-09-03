@@ -1,17 +1,10 @@
 pipeline {
     agent any
     stages {
-        // stage('Cloning') {
-        //     steps {
-        //        sh "ls -la"
-        //       //  sh "git clone https://github.com/atefhares/jenkins_nodejs_example ./ymal_files"
-        //     }
-        // }
         stage('Deploying') {
             steps {
                 sh '/usr/local/bin/kubectl/kubectl delete configmap -n $db_env mysql-config'
                 withCredentials([usernamePassword(credentialsId: 'mysql_data', passwordVariable: 'mysql_password', usernameVariable: 'mysql_username')]) {
-                  sh '/usr/local/bin/kubectl/kubectl get po -n dev'
                   sh '/usr/local/bin/kubectl/kubectl create configmap -n $db_env mysql-config --from-literal=USERNAME=$mysql_username --from-literal=PASSWORD=$mysql_password --from-literal=DATABASE=$db_name'
                 }
                 sh "/usr/local/bin/kubectl/kubectl apply -n $db_env -f challenge_6/cd/app_deployment.yaml -f challenge_6/cd/app_service.yaml"
@@ -20,7 +13,6 @@ pipeline {
     }
     post { 
         always { 
-            // sh '/usr/local/bin/kubectl/kubectl delete configmap -n $db_env mysql-config'
             cleanWs()
         }
     }

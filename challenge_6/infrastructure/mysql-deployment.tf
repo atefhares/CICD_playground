@@ -37,7 +37,7 @@ resource "kubernetes_deployment" "mysql-dev-deployment" {
         }
 
         container {
-          image = "mysql:latest"
+          image = "mysql:5.7"
           name  = var.mysql_pods_lable
           port {
             container_port = 3306
@@ -102,7 +102,7 @@ resource "kubernetes_deployment" "mysql-test-deployment" {
         }
 
         container {
-          image = "mysql:latest"
+          image = "mysql:5.7"
           name  = var.mysql_pods_lable
           port {
             container_port = 3306
