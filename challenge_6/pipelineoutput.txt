@@ -1,0 +1,90 @@
+Started by user Atef Hares
+Obtained challenge_6/cd/Jenkinsfile from git https://github.com/atefhares/CICD_playground
+Resume disabled by user, switching to high-performance, low-durability mode.
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/CD-pipeline
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+The recommended git tool is: git
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/atefhares/CICD_playground # timeout=10
+Fetching upstream changes from https://github.com/atefhares/CICD_playground
+ > git --version # timeout=10
+ > git --version # 'git version 2.11.0'
+ > git fetch --tags --progress -- https://github.com/atefhares/CICD_playground +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision b3d8a02904ce99b26d34ac04affb4249aa8092ab (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f b3d8a02904ce99b26d34ac04affb4249aa8092ab # timeout=10
+Commit message: "challenge 6 mods"
+ > git rev-list --no-walk 24b32263a32133f7ea7edbd6733593359f2ec062 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Deploying)
+[Pipeline] withCredentials
+Masking supported pattern matches of $mysql_username or $mysql_password
+[Pipeline] {
+[Pipeline] sh
++ ansible-playbook challenge_6/cd/deploy.yml --extra-vars mysql_username=**** mysql_password=**** db_name=mydatabase db_env=dev
+[WARNING]: No inventory was parsed, only implicit localhost is available
+[WARNING]: provided hosts list is empty, only localhost is available. Note that
+the implicit localhost does not match 'all'
+
+PLAY [run kubectl] *************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+
+TASK [Find out playbook's path] ************************************************
+changed: [localhost]
+
+TASK [debug] *******************************************************************
+ok: [localhost] => {
+    "playbook_path_output.stdout_lines": [
+        "/var/jenkins_home/workspace/CD-pipeline/challenge_6/cd"
+    ]
+}
+
+TASK [apply configmap] *********************************************************
+changed: [localhost]
+
+TASK [debug] *******************************************************************
+ok: [localhost] => {
+    "apply_configmap_output.stdout_lines": [
+        "configmap/mysql-config configured"
+    ]
+}
+
+TASK [apply deployment] ********************************************************
+changed: [localhost]
+
+TASK [debug] *******************************************************************
+ok: [localhost] => {
+    "apply_deployment_output.stdout_lines": [
+        "deployment.apps/nodejs-app-deployment unchanged", 
+        "service/nodejs-app-service unchanged"
+    ]
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=7    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
