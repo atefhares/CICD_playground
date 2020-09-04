@@ -25,6 +25,8 @@ The goal is to use Terraform to setup kubernetes cluster contains the following 
 pipeline output:
 <a href="pipelineoutput.txt"> pipelineoutput.txt </a>
 
+---
+
 <img src="screenshots/1.png" width="1000"/>
 
 ---
