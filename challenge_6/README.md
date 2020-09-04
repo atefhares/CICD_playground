@@ -1,4 +1,5 @@
 The goal is to use Terraform to setup kubernetes cluster contains the following resources:
+and deploy a simple nodejs application on the cluster.
 
 ## Resources created
 
@@ -8,6 +9,13 @@ The goal is to use Terraform to setup kubernetes cluster contains the following 
 - 1 service to access _jenkins_ externally
 - 1 service to access _sonatype-nexus_ externally
 - 1 service to access _mysql_ internally
+
+## Tools used
+
+- Minkube to setup a k8s cluster
+- Terraform to create cluster resources
+- Ansible & kubectl to communicate with the cluster
+- jenkins to automate CI/CD process
 
 ## How to get started
 
@@ -19,6 +27,9 @@ The goal is to use Terraform to setup kubernetes cluster contains the following 
   `terraform apply -var="MYSQL_USER=?" -var="MYSQL_PASSWORD=?" -var="MYSQL_ROOT_PASSWORD=?"`
 
   to apply the changes
+
+- go to cliusterIp:30001 to access jenkins, then go through setup steps
+- create two parametrized pipelines as shown in images and use the Jenkins files from CI/CD dirs.
 
 ## outputs:
 
