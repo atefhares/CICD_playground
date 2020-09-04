@@ -2,6 +2,9 @@
 - name: run kubectl
   hosts: localhost
   tasks:
+  - name: print dir
+    shell: pwd && ls -la
+    
   - name: apply configmap
     shell: |
       /usr/local/bin/kubectl/kubectl create configmap -n {{db_env}} mysql-config --from-literal=USERNAME={{mysql_username}} --from-literal=PASSWORD={{mysql_password}} --from-literal=DATABASE={{db_name}} -o yaml --dry-run=client | /usr/local/bin/kubectl/kubectl apply -f -
