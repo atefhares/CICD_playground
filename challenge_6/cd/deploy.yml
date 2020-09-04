@@ -15,6 +15,6 @@
 
     - name: apply deployment
       shell: |
-        "ls && /usr/local/bin/kubectl/kubectl apply -n {{db_env}} -f app_deployment.yaml -f app_service.yaml"
+        "/usr/local/bin/kubectl/kubectl apply -n {{db_env}} -f app_deployment.yaml -f app_service.yaml"
       register: apply_deployment_output
     - debug: var=apply_deployment_output.stdout_lines
