@@ -8,13 +8,11 @@
     - debug: var=playbook_path_output.stdout_lines
 
     - name: apply configmap
-      shell: |
-        /usr/local/bin/kubectl/kubectl create configmap -n {{db_env}} mysql-config --from-literal=USERNAME={{mysql_username}} --from-literal=PASSWORD={{mysql_password}} --from-literal=DATABASE={{db_name}} -o yaml --dry-run=client | /usr/local/bin/kubectl/kubectl apply -f -
+      shell: bash /usr/local/bin/kubectl/kubectl create configmap -n {{db_env}} mysql-config --from-literal=USERNAME={{mysql_username}} --from-literal=PASSWORD={{mysql_password}} --from-literal=DATABASE={{db_name}} -o yaml --dry-run=client | /usr/local/bin/kubectl/kubectl apply -f -
       register: apply_configmap_output
     - debug: var=apply_configmap_output.stdout_lines
 
     - name: apply deployment
-      shell: |
-        "/usr/local/bin/kubectl/kubectl apply -n {{db_env}} -f app_deployment.yaml -f app_service.yaml"
+      shell: bash /usr/local/bin/kubectl/kubectl apply -n {{db_env}} -f app_deployment.yaml -f app_service.yaml
       register: apply_deployment_output
     - debug: var=apply_deployment_output.stdout_lines
