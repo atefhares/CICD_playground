@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Deploying') {
             steps {
+                sh 'pwd'
                 withCredentials([usernamePassword(credentialsId: 'mysql_data', passwordVariable: 'mysql_password', usernameVariable: 'mysql_username')]) {
                     sh 'ansible-playbook --connection=local --inventory 127.0.0.1 deploy.yml --extra-vars "mysql_username=${mysql_username} mysql_password=${mysql_password} db_name=${db_name} db_env=${db_env}"'
                 //   sh '/usr/local/bin/kubectl/kubectl create configmap -n $db_env mysql-config --from-literal=USERNAME=$mysql_username --from-literal=PASSWORD=$mysql_password --from-literal=DATABASE=$db_name -o yaml --dry-run=client | /usr/local/bin/kubectl/kubectl apply -f -'
