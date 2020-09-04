@@ -30,6 +30,7 @@ and deploy a simple nodejs application on the cluster.
 
 - go to `clusterIp:30001` to access jenkins, then go through setup steps
 - create two parametrized pipelines as shown in images and use the Jenkins files from CI/CD dirs.
+- after SUCCESS state you can access app @ `clusterIp:30010`
 
 ## outputs:
 
