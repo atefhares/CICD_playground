@@ -8,4 +8,4 @@
 
   - name: apply deployment
     shell: |
-      "/usr/local/bin/kubectl/kubectl apply -n {{db_env}} -f challenge_6/cd/app_deployment.yaml -f challenge_6/cd/app_service.yaml"
+      "/usr/local/bin/kubectl/kubectl apply -n {{db_env}} -f app_deployment.yaml -f app_service.yaml"
