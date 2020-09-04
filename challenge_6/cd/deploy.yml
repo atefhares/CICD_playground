@@ -1,0 +1,11 @@
+---
+- name: run kubectl
+  hosts: localhost
+  tasks:
+  - name: apply configmap
+    shell: |
+      /usr/local/bin/kubectl/kubectl create configmap -n $db_env mysql-config --from-literal=USERNAME=$mysql_username --from-literal=PASSWORD=$mysql_password --from-literal=DATABASE=$db_name -o yaml --dry-run=client | /usr/local/bin/kubectl/kubectl apply -f -
+
+  - name: apply deployment
+    shell: |
+      "/usr/local/bin/kubectl/kubectl apply -n $db_env -f challenge_6/cd/app_deployment.yaml -f challenge_6/cd/app_service.yaml"
