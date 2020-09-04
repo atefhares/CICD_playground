@@ -23,7 +23,7 @@ The goal is to use Terraform to setup kubernetes cluster contains the following 
 ## outputs:
 
 pipeline output:
-<a>pipelineoutput.txt</a>
+<a href="pipelineoutput.txt"> pipelineoutput.txt </a>
 
 <img src="screenshots/1.png" width="1000"/>
 
