@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+    stages {
+        stage('Cloning') {
+            steps {
+               sh "rm -rf ./jenkins_nodejs_example"
+               sh "git clone https://github.com/atefhares/jenkins_nodejs_example ./jenkins_nodejs_example"
+               sh "cd ./jenkins_nodejs_example && git checkout k8s_task && git checkout $commit_id"
+            }
+        }
+
+        stage('Building') {
+            steps {
+                sh "docker build --tag=jenkins_nodejs_example_nexus ./jenkins_nodejs_example"
+            }
+        }
+
+        stage('Pushing') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'nexus_id', passwordVariable: 'DOCKER_REGISTRY_PWD', usernameVariable: 'DOCKER_REGISTRY_USER')]) {
+                  sh 'docker login http://35.224.32.63:30002/repository/my-docker-private-repo/ -u=$DOCKER_REGISTRY_USER -p=$DOCKER_REGISTRY_PWD'
+                  sh 'docker tag jenkins_nodejs_example_nexus http://35.224.32.63:30002/repository/my-docker-private-repo   /jenkins_nodejs_example_nexus:latest'
+                  sh "docker push http://35.224.32.63:30002/repository/my-docker-private-repo/jenkins_nodejs_example_nexus"
+                }
+            } 
+        }
+    }
+}
