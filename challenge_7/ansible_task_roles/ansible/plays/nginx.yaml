@@ -3,4 +3,4 @@
   hosts: localhost
   become: true
   roles:
-    - nginx
+    - roles/nginx
