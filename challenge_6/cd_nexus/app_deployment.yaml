@@ -9,7 +9,7 @@ spec:
         tag: nodejsapp
     spec:
       imagePullSecrets:
-            - name: nexus_registry
+            - name: nexus-docker-registry-secret
       containers:
         - name: nodejsapp
           image: 35.224.32.63:30003/jenkins_nodejs_example_nexus:latest
