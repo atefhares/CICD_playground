@@ -8,11 +8,11 @@ spec:
       labels:
         tag: nodejsapp
     spec:
+      imagePullSecrets:
+            - name: nexus_registry
       containers:
         - name: nodejsapp
           image: 35.224.32.63:30003/jenkins_nodejs_example_nexus:latest
-          imagePullSecrets:
-            - name: nexus_registry
           ports:
             - containerPort: 3000
           env:
