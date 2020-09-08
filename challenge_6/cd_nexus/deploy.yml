@@ -13,7 +13,7 @@
     - debug: var=apply_configmap_output.stdout_lines
 
     - name: create docker registry secret
-      shell: /usr/local/bin/kubectl/kubectl create secret docker-registry nexus_registry --docker-server=http://35.224.32.63:30003 --docker-username={{REGISTRY_USER}}  --docker-password={{REGISTRY_PWD}} -o yaml --dry-run=client | /usr/local/bin/kubectl/kubectl apply -f -
+      shell: /usr/local/bin/kubectl/kubectl create secret -n {{db_env}} docker-registry nexus_registry --docker-server=http://35.224.32.63:30003 --docker-username={{REGISTRY_USER}}  --docker-password={{REGISTRY_PWD}} -o yaml --dry-run=client | /usr/local/bin/kubectl/kubectl apply -f -
       register: apply_docker_registry_secret_output
     - debug: var=apply_docker_registry_secret_output.stdout_lines
 
