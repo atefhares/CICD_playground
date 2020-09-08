@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-app-deployment
+spec:
+  template:
+    metadata:
+      labels:
+        tag: nodejsapp
+    spec:
+      containers:
+        - name: nodejsapp
+          image: 35.224.32.63:30003/jenkins_nodejs_example_nexus:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: HOST
+              value: "mysql-service"
+            - name: USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-config
+                  key: USERNAME
+            - name: PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-config
+                  key: PASSWORD
+            - name: DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: mysql-config
+                  key: DATABASE
+  replicas: 1
+  selector:
+    matchLabels:
+      tag: nodejsapp

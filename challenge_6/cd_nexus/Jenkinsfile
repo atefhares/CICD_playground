@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+    stages {
+        stage('Deploying') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'mysql_data', passwordVariable: 'mysql_password', usernameVariable: 'mysql_username')]) {
+                    sh 'ansible-playbook challenge_6/cd_nexus/deploy.yml --extra-vars "mysql_username=${mysql_username} mysql_password=${mysql_password} db_name=mydatabase db_env=${db_env}"'
+                }
+            } 
+        }
+    }
+    post { 
+        always { 
+            cleanWs()
+        }
+    }
+}
