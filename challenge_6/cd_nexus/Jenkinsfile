@@ -3,10 +3,6 @@ pipeline {
     stages {
         stage('Deploying') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'nexus_id', passwordVariable: 'DOCKER_REGISTRY_PWD', usernameVariable: 'DOCKER_REGISTRY_USER')]) {
-                  sh 'kubectl create secret docker-registry nexus_registry --docker-server=http://35.224.32.63:30003 --docker-username=$DOCKER_REGISTRY_USER  --docker-password=$DOCKER_REGISTRY_PWD'
-                }
-
                 withCredentials([usernamePassword(credentialsId: 'mysql_data', passwordVariable: 'mysql_password', usernameVariable: 'mysql_username'), usernamePassword(credentialsId: 'nexus_id', passwordVariable: 'DOCKER_REGISTRY_PWD', usernameVariable: 'DOCKER_REGISTRY_USER')]) {
                     sh 'ansible-playbook challenge_6/cd_nexus/deploy.yml --extra-vars "mysql_username=${mysql_username} mysql_password=${mysql_password} db_name=mydatabase db_env=${db_env} REGISTRY_PWD=${DOCKER_REGISTRY_PWD} REGISTRY_USER=${DOCKER_REGISTRY_USER}"'
                 }
