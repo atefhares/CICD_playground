@@ -1,4 +1,4 @@
-resource "kubernetes_service" "build-namespace-nexus-service" {
+resource "kubernetes_service" "build-namespace-nexus-service-2" {
   depends_on = [
     kubernetes_deployment.nexus-deployment,
   ]
