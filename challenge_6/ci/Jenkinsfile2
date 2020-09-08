@@ -19,8 +19,8 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus_id', passwordVariable: 'DOCKER_REGISTRY_PWD', usernameVariable: 'DOCKER_REGISTRY_USER')]) {
                   sh 'docker login http://35.224.32.63:30003 -u=$DOCKER_REGISTRY_USER -p=$DOCKER_REGISTRY_PWD'
-                  sh 'docker tag jenkins_nodejs_example_nexus http://35.224.32.63:30003/jenkins_nodejs_example_nexus:latest'
-                  sh "docker push http://35.224.32.63:30003/jenkins_nodejs_example_nexus"
+                  sh 'docker tag jenkins_nodejs_example_nexus 35.224.32.63:30003/jenkins_nodejs_example_nexus:latest'
+                  sh "docker push 35.224.32.63:30003/jenkins_nodejs_example_nexus"
                 }
             } 
         }
