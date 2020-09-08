@@ -43,6 +43,10 @@ resource "kubernetes_deployment" "nexus-deployment" {
             container_port = 8081
           }
 
+          port {
+            container_port = 8083
+          }
+
           volume_mount {
             name       = kubernetes_persistent_volume.nexus-volume.metadata.0.name
             mount_path = "/nexus-data"
