@@ -12,7 +12,7 @@ resource "kubernetes_service" "build-namespace-nexus-service-2" {
       name = var.nexus_pods_lable
     }
     port {
-      node_port   = 8083
+      node_port   = 30003
       port        = 8083
       target_port = 8083
     }
